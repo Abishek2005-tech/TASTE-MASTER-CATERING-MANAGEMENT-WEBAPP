@@ -6,16 +6,6 @@ You can copy and paste all the content below into your `README.md` file.
 
 # TasteMasters | A Full-Stack Catering Management Platform 🍽️
 
-\<p align="center"\>
-\<em\>A feature-rich web application for managing catering orders, built with Python and Flask.\</em\>
-\</p\>
-
-\<p align="center"\>
-\<img src="[https://img.shields.io/badge/Python-3.11-blue.svg](https://img.shields.io/badge/Python-3.11-blue.svg)" alt="Python Version"\>
-\<img src="[https://img.shields.io/badge/Flask-2.3-hotpink.svg](https://img.shields.io/badge/Flask-2.3-hotpink.svg)" alt="Flask Version"\>
-\<img src="[https://img.shields.io/badge/Database-MySQL-orange.svg](https://img.shields.io/badge/Database-MySQL-orange.svg)" alt="Database"\>
-\<img src="[https://img.shields.io/badge/License-MIT-green.svg](https://img.shields.io/badge/License-MIT-green.svg)" alt="License"\>
-\</p\>
 
 -----
 
