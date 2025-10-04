@@ -1,6 +1,3 @@
-Of course. Here is a professional `README.md` file for your "TasteMasters" project, structured exactly like the example you provided.
-
-You can copy and paste all the content below into your `README.md` file.
 
 -----
 
