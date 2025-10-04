@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home - Dashboard{% endblock %}
+
+{% block content %}
+<div class="hero-section text-center">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">TasteMasters Catering</h1>
+        <p class="fs-4">{{ welcome_message }}</p>
+    </div>
+</div>
+
+<div class="container my-5">
+    <h2 class="text-center mb-5 display-6">Our Signature Menu</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for item in food_items %}
+        <div class="col reveal-on-scroll"> <div class="card h-100">
+                <img src="{{ item.image_url }}" class="card-img-top" alt="{{ item.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                    <p class="card-text">{{ item.description }}</p>
+                    <p class="card-text"><strong>Price:</strong> ₹{{ "%.2f"|format(item.price_per_unit) }}</p>
+                </div>
+                <div class="card-footer">
+                    <form action="{{ url_for('order_summary', food_id=item.id) }}" method="GET">
+                        <button type="submit" class="btn btn-success w-100">Book Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center my-5 p-4 bg-light rounded-3 reveal-on-scroll">
+        <h3>Can't find what you're looking for?</h3>
+        <p>Place a custom order request, and we'll bring your culinary vision to life!</p>
+        <a href="{{ url_for('custom_order') }}" class="btn btn-lg btn-warning">Request a Custom Dish</a>
+    </div>
+</div>
+{% endblock %}

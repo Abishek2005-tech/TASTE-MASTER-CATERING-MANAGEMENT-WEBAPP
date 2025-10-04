@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block title %}Custom Order Request{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="custom-order-container">
+                <div class="text-center">
+                    <h1 class="display-5">Custom Order Request</h1>
+                    <p class="lead text-muted">Have a special dish in mind? Let us know!</p>
+                </div>
+
+                <div class="form-info-box my-4">
+                    <p>
+                        Please fill out the details below. Your request will be sent to our admin team for review. 
+                        We will notify you once it has been approved, after which you can proceed with the payment.
+                    </p>
+                </div>
+
+                <form action="{{ url_for('custom_order') }}" method="POST">
+                    <div class="form-group">
+                        <input type="text" id="food_name" name="food_name" class="form-control" placeholder=" " required>
+                        <label for="food_name" class="form-label">Food or Dish Name</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="number" id="quantity" name="quantity" class="form-control" placeholder=" " min="1" required>
+                        <label for="quantity" class="form-label">Quantity (e.g., servings, kg, pieces)</label>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <input type="date" id="delivery_date" name="delivery_date" class="form-control" placeholder=" " required>
+                            <label for="delivery_date" class="form-label">Required Date</label>
+                        </div>
+                        
+                        <div class="col-md-6 form-group">
+                            <input type="time" id="delivery_time" name="delivery_time" class="form-control" placeholder=" " required>
+                            <label for="delivery_time" class="form-label">Required Time</label>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Send Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

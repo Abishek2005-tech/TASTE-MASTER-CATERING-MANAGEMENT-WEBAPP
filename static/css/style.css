@@ -1,0 +1,683 @@
+/* =================================================================
+   ||  CATERING WEBSITE - MAX CSS STYLESHEET                       ||
+   ================================================================= */
+
+/* =================================
+   1. Setup: Google Fonts & CSS Variables
+   ================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;500;700&display=swap');
+
+:root {
+    --primary-color: #A12525; /* A richer, deeper red */
+    --secondary-color: #E6B325; /* A vibrant, elegant gold */
+    --background-color: #F8F4F0; /* Softer, more luxurious cream */
+    --text-color: #2c2c2c; /* A softer black */
+    --light-gray: #e0e0e0;
+    --card-background: #FFFFFF;
+    --footer-background: #1a1a1a;
+
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+
+    --shadow-light: 0 5px 15px rgba(0,0,0,0.07);
+    --shadow-heavy: 0 15px 35px rgba(0,0,0,0.15);
+    --border-radius: 12px;
+}
+
+/* =================================
+   2. General Styling & Base Elements
+   ================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: var(--font-body);
+    color: var(--text-color);
+    line-height: 1.7;
+    overflow-x: hidden; /* Prevents horizontal scroll from animations */
+    padding-top: 80px; /* Add this line here */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+
+/* =================================
+   3. Main Navigation Bar
+   ================================= */
+
+.navbar {
+    background: linear-gradient(135deg, var(--primary-color), #6b1212) !important;
+    box-shadow: var(--shadow-heavy);
+    padding: 1rem 1.5rem;
+    transition: padding 0.3s ease;
+}
+
+.navbar-brand {
+    font-family: var(--font-heading);
+    color: #FFFFFF !important;
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.nav-link {
+    color: #FFFFFF !important;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin: 0 1rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease-in-out;
+}
+
+.nav-link:hover {
+    color: var(--secondary-color) !important;
+}
+
+.nav-link:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+
+/* =================================
+   4. Hero Section
+   ================================= */
+
+.hero-section { /* Replace the default Bootstrap class 'p-5.bg-light...' in index.html with this */
+    position: relative;
+    padding: 8rem 2rem !important;
+    background: linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1887') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed; /* Simple Parallax Effect */
+    border-radius: 0 0 50px 50px;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    margin-bottom: 4rem;
+}
+
+.hero-section .display-5 {
+    color: white;
+    font-size: 4.5rem;
+    font-weight: 900;
+}
+.hero-section .fs-4 {
+    font-family: var(--font-body);
+    font-size: 1.5rem;
+    max-width: 600px;
+    margin: 1rem auto;
+}
+
+
+/* =================================
+   5. Food Item Cards
+   ================================= */
+
+.card {
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--card-background);
+    box-shadow: var(--shadow-light);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: var(--shadow-heavy);
+}
+
+.card .card-img-top {
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.1);
+    filter: brightness(0.7);
+}
+
+.card-body {
+    padding: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+.card .btn {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    z-index: 3;
+}
+
+.card:hover .btn {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+
+/* =================================
+   6. Buttons & Forms
+   ================================= */
+
+/* General Button Styling */
+.btn {
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-weight: 700;
+    font-family: var(--font-body);
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.btn-primary, .btn-success {
+    background: linear-gradient(45deg, var(--primary-color), #d13a3a);
+    color: white;
+    box-shadow: 0 4px 15px rgba(161, 37, 37, 0.4);
+}
+
+.btn-primary:hover, .btn-success:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(161, 37, 37, 0.6);
+}
+
+/* Floating Labels Form Styling */
+.form-group {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.form-control {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid var(--light-gray);
+    border-radius: 0;
+    padding: 10px 0;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+    border-bottom-color: var(--primary-color);
+}
+
+.form-label { /* Use this class for <label> tags */
+    position: absolute;
+    top: 10px;
+    left: 0;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus ~ .form-label,
+.form-control:not(:placeholder-shown) ~ .form-label {
+    top: -20px;
+    left: 0;
+    font-size: 0.85rem;
+    color: var(--primary-color);
+}
+
+/* To use this, structure your HTML form like this:
+<div class="form-group">
+    <input type="text" id="name" name="name" class="form-control" placeholder=" " required>
+    <label for="name" class="form-label">Full Name</label>
+</div>
+*/
+
+
+/* =================================
+   7. Admin Table
+   ================================= */
+
+.table {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-heavy);
+}
+
+.table thead {
+    background: linear-gradient(45deg, var(--text-color), #4d4d4d);
+    color: white;
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+}
+
+.table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.table-hover tbody tr:hover {
+    background-color: var(--primary-color-light, #fdeeee);
+    transform: scale(1.01);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+
+/* =================================
+   8. Footer
+   ================================= */
+
+.footer {
+    background-color: var(--footer-background);
+    color: #ccc;
+    padding: 3rem 1rem;
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%); /* Angled top */
+    margin-top: 5rem;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+
+/* =================================
+   9. Animations & Scroll Effects
+   ================================= */
+
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* =================================
+   10. Order Success Page
+   ================================= */
+
+.order-success-card {
+    background-color: var(--card-background);
+    padding: 3rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-heavy);
+    max-width: 600px;
+    width: 100%;
+    transform: scale(0.95);
+    opacity: 0;
+    animation: popIn 0.5s 0.2s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.order-success-card h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+.order-details-summary {
+    background-color: #f9f9f9;
+    border: 1px dashed var(--light-gray);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.order-success-card .btn-outline-secondary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.order-success-card .btn-outline-secondary:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Animated Checkmark Styling */
+.svg-container {
+    display: flex;
+    justify-content: center;
+}
+
+.ft-green-tick .circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #5bb543;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.ft-green-tick {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    margin: 0 auto;
+    box-shadow: inset 0px 0px 0px #5bb543;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.ft-green-tick .tick {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes scale {
+    0%, 100% {
+        transform: none;
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}
+
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 50px #5bb543;
+    }
+}
+/* =================================
+   11. Order Summary Page
+   ================================= */
+
+.summary-section {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+}
+
+.summary-section h3 {
+    font-family: var(--font-heading);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+.order-item-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.order-item-card .item-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+.order-item-card .item-details {
+    flex-grow: 1;
+}
+
+.order-item-card .item-title {
+    margin-bottom: 0.25rem;
+    font-size: 1.4rem;
+}
+
+.order-item-card .item-price {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.order-item-card .item-quantity input {
+    width: 80px;
+    font-weight: bold;
+    border-width: 2px;
+}
+
+.custom-radio .form-check-input {
+    display: none; /* Hide default radio */
+}
+
+.custom-radio .form-check-label {
+    display: block;
+    border: 2px solid var(--light-gray);
+    border-radius: 8px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.custom-radio .form-check-label span {
+    display: block;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.custom-radio .form-check-input:checked + .form-check-label {
+    border-color: var(--primary-color);
+    background-color: #fdeeee;
+    box-shadow: 0 0 10px rgba(161, 37, 37, 0.2);
+}
+
+.price-summary-card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    position: sticky;
+    top: 20px; /* Makes the card stick on scroll */
+}
+
+.price-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.price-list li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.price-list li.total {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-top: 1rem;
+}
+/* =================================
+   12. Custom Order Page
+   ================================= */
+
+.custom-order-container {
+    background: var(--card-background);
+    padding: 3rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-heavy);
+    border-top: 5px solid var(--primary-color);
+}
+
+.form-info-box {
+    background-color: #fdeeee;
+    border-left: 4px solid var(--primary-color);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Make date/time input labels work correctly with floating labels */
+.form-control:focus ~ .form-label,
+.form-control:not(:placeholder-shown) ~ .form-label,
+/* Add this new selector for date/time inputs that are not empty */
+input[type="date"]:not([value=""]) ~ .form-label,
+input[type="time"]:not([value=""]) ~ .form-label {
+    top: -20px;
+    left: 0;
+    font-size: 0.85rem;
+    color: var(--primary-color);
+}
+/* =================================
+   13. My Orders Page
+   ================================= */
+
+/* General styling for the table on the My Orders page */
+.my-orders-table thead {
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+    background: linear-gradient(45deg, var(--text-color), #4d4d4d);
+    color: white;
+}
+
+.my-orders-table tbody tr {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-bottom: 1px solid #eee;
+}
+
+.my-orders-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.my-orders-table tbody tr:hover {
+    background-color: #fff8f8;
+    transform: scale(1.02);
+    box-shadow: var(--shadow-light);
+    cursor: pointer;
+}
+
+/* Custom styling for status badges */
+.table .badge {
+    padding: 0.5em 1em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 50px;
+}
+
+.badge.status-booked {
+    background-color: #17a2b8 !important; /* Info Blue */
+    color: white;
+}
+
+.badge.status-inprogress {
+    background-color: var(--secondary-color) !important; /* Gold */
+    color: var(--text-color);
+}
+
+.badge.status-delivered {
+    background-color: #28a745 !important; /* Success Green */
+    color: white;
+}
+
+/* Styling for the "No Orders Found" message box */
+.no-orders-found {
+    background-color: var(--card-background);
+    border: 2px dashed var(--light-gray);
+    padding: 3rem;
+    border-radius: var(--border-radius);
+}
+
+.no-orders-found h3 {
+    font-family: var(--font-heading);
+    color: var(--text-color);
+}
+
+/* =================================
+   14. General Enhancements
+   ================================= */
+
+/* Padding for fixed top navbar */
+body {
+    padding-top: 80px; /* Adjust if your navbar height changes */
+}
+
+/* Alert styling to match the theme */
+.alert {
+    border-radius: var(--border-radius);
+    border-width: 0;
+    border-left-width: 5px;
+    box-shadow: var(--shadow-light);
+}
+.alert-success { border-color: #28a745; }
+.alert-danger { border-color: var(--primary-color); }
+.alert-warning { border-color: var(--secondary-color); }
+.alert-info { border-color: #17a2b8; }

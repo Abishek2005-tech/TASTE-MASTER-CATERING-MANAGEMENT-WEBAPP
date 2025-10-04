@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% block title %}Admin - Add Food{% endblock %}
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="custom-order-container">
+                <h2>Add New Food Item</h2>
+                <hr>
+                <form action="{{ url_for('add_food') }}" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder=" " required>
+                        <label class="form-label">Food Name</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="description" class="form-control" rows="3" placeholder=" " required></textarea>
+                        <label class="form-label">Description</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" step="0.01" name="price" class="form-control" placeholder=" " required>
+                        <label class="form-label">Price (e.g., 150.00)</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="image_url" class="form-control" placeholder=" " required>
+                        <label class="form-label">Image URL</label>
+                    </div>
+                    <button type="submit" class="btn btn-success">Add Food</button>
+                    <a href="{{ url_for('admin_foods') }}" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

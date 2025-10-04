@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h1 class="display-5">Admin Dashboard</h1>
+        <p class="lead">Manage your catering service from here.</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card h-100 text-center admin-card">
+                <div class="card-body">
+                    <i class="fas fa-utensils fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Manage Food Menu</h5>
+                    <p class="card-text">Add, edit, or delete items from your public food menu.</p>
+                    <a href="{{ url_for('admin_foods') }}" class="btn btn-primary">Go to Menu</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100 text-center admin-card">
+                <div class="card-body">
+                    <i class="fas fa-bell fa-3x text-warning mb-3"></i>
+                    <h5 class="card-title">Manage Custom Requests</h5>
+                    <p class="card-text">View and approve custom order requests from users.</p>
+                    <a href="{{ url_for('admin_requests') }}" class="btn btn-warning">View Requests</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

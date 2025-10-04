@@ -1,0 +1,87 @@
+{% extends 'layout.html' %}
+
+{% block title %}Order Summary{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h1 class="display-5">Review Your Order</h1>
+        <p class="lead">Just one step away from deliciousness!</p>
+    </div>
+
+    <form action="{{ url_for('checkout') }}" method="POST">
+        <input type="hidden" name="food_id" value="{{ item.id }}">
+
+        <div class="row g-5">
+            <div class="col-lg-7">
+                <div class="summary-section">
+                    <h3>1. Your Item</h3>
+                    <div class="order-item-card">
+                        <img src="{{ item.image_url }}" alt="{{ item.name }}" class="item-image">
+                        <div class="item-details">
+                            <h5 class="item-title">{{ item.name }}</h5>
+                            <p class="item-description">{{ item.description }}</p>
+                            <span class="item-price" data-unit-price="{{ item.price_per_unit }}">₹{{ "%.2f"|format(item.price_per_unit) }} / unit</span>
+                        </div>
+                        <div class="item-quantity">
+                            <label for="quantity" class="form-label">Quantity</label>
+                            <input type="number" name="quantity" id="quantity" class="form-control text-center" value="1" min="1" max="100" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-section mt-4">
+                    <h3>2. Delivery & Schedule</h3>
+                    <div class="delivery-options">
+                        <div class="form-check custom-radio">
+                            <input class="form-check-input" type="radio" name="delivery_option" id="pickup" value="pickup" checked>
+                            <label class="form-check-label" for="pickup">
+                                <i class="fas fa-store"></i> Self Pickup
+                                <span>No extra charges</span>
+                            </label>
+                        </div>
+                        <div class="form-check custom-radio">
+                            <input class="form-check-input" type="radio" name="delivery_option" id="delivery" value="delivery">
+                            <label class="form-check-label" for="delivery">
+                                <i class="fas fa-truck"></i> Home Delivery
+                                <span>Standard charges apply</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6 form-group">
+                            <input type="date" name="delivery_date" class="form-control" placeholder=" " required>
+                            <label class="form-label">Preferred Date</label>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <input type="time" name="delivery_time" class="form-control" placeholder=" " required>
+                            <label class="form-label">Preferred Time</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="price-summary-card">
+                    <h3 class="mb-4">Price Details</h3>
+                    <ul class="price-list">
+                        <li><span>Subtotal</span> <span id="subtotal">₹{{ "%.2f"|format(item.price_per_unit) }}</span></li>
+                        <li><span>Delivery Fee</span> <span id="delivery-fee">₹0.00</span></li>
+                        <hr>
+                        <li class="total"><strong>Total Amount</strong> <strong id="total-amount">₹{{ "%.2f"|format(item.price_per_unit) }}</strong></li>
+                    </ul>
+
+                    <h4 class="mt-4">3. Payment Method</h4>
+                    <div class="payment-options">
+                        <p class="text-muted small">The final payment will be simulated after you click the button below.</p>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 btn-lg mt-4">
+                        Proceed to Pay
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block title %}Order Successful!{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="order-success-card text-center">
+        <div class="svg-container">    
+            <svg class="ft-green-tick" xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 48 48" aria-hidden="true">
+                <circle class="circle" fill="#5bb543" cx="24" cy="24" r="22"/>
+                <path class="tick" fill="none" stroke="#FFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M14 27l5.917 4.917L34 17"/>
+            </svg>
+        </div>
+
+        <h1 class="mt-4">Order Placed Successfully!</h1>
+        
+        <p class="lead text-muted">
+            Thank you, <strong>{{ session.name if session.name else 'Valued Customer' }}</strong>! Your order is confirmed.
+        </p>
+        
+        <div class="order-details-summary my-4">
+            <p><strong>Order ID:</strong> #CATER-{{ 1000 + order_id if order_id else '12345' }}</p>
+            <p>Our team will contact you shortly to confirm the delivery details.</p>
+        </div>
+        
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="{{ url_for('index') }}" role="button" class="btn btn-primary btn-lg px-4 gap-3">Back to Home</a>
+            <a href="#" role="button" class="btn btn-outline-secondary btn-lg px-4">Download Bill</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
